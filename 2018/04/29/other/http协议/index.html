@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTTP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="http协议概述 http客户端(游览器)发起请求,创建端口 http服务器在端口监听客户端请求 http服务器向客户端返回状态码和内容  打开首页 chrome搜索自身的DNS缓存 =&amp;gt; 系统DNS缓存 =&amp;gt; 本地host =&amp;gt; 请求(问)运营商(电信) 电信服务器查看自身DNS缓存 =&amp;gt; 电信迭代请求DNS =&amp;gt; 最终找到首页的ip =&amp;gt; 返回给系统并缓存起">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http协议">
+<meta property="og:url" content="http://yoursite.com/2018/04/29/other/http协议/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="http协议概述 http客户端(游览器)发起请求,创建端口 http服务器在端口监听客户端请求 http服务器向客户端返回状态码和内容  打开首页 chrome搜索自身的DNS缓存 =&amp;gt; 系统DNS缓存 =&amp;gt; 本地host =&amp;gt; 请求(问)运营商(电信) 电信服务器查看自身DNS缓存 =&amp;gt; 电信迭代请求DNS =&amp;gt; 最终找到首页的ip =&amp;gt; 返回给系统并缓存起">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-29T03:55:51.332Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http协议">
+<meta name="twitter:description" content="http协议概述 http客户端(游览器)发起请求,创建端口 http服务器在端口监听客户端请求 http服务器向客户端返回状态码和内容  打开首页 chrome搜索自身的DNS缓存 =&amp;gt; 系统DNS缓存 =&amp;gt; 本地host =&amp;gt; 请求(问)运营商(电信) 电信服务器查看自身DNS缓存 =&amp;gt; 电信迭代请求DNS =&amp;gt; 最终找到首页的ip =&amp;gt; 返回给系统并缓存起">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/29/other/http协议/"/>
+
+
+
+
+
+  <title>http协议 | Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/29/other/http协议/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiangJiaYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">http协议</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T13:07:05+08:00">
+                2018-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/other/" itemprop="url" rel="index">
+                    <span itemprop="name">other</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li><code>http</code>客户端(游览器)发起请求,创建端口</li>
+<li><code>http</code>服务器在端口监听客户端请求</li>
+<li><code>http</code>服务器向客户端返回状态码和内容</li>
+</ul>
+<h3 id="打开首页"><a href="#打开首页" class="headerlink" title="打开首页"></a>打开首页</h3><ol>
+<li><code>chrome</code>搜索自身的<code>DNS</code>缓存 <code>=&gt;</code> 系统<code>DNS</code>缓存 <code>=&gt;</code> 本地<code>host</code> <code>=&gt;</code> 请求(问)运营商(电信)</li>
+<li>电信服务器查看自身<code>DNS</code>缓存 <code>=&gt;</code> 电信迭代请求<code>DNS</code> <code>=&gt;</code> 最终找到首页的<code>ip</code> <code>=&gt;</code> 返回给系统并缓存起来 <code>=&gt;</code> 系统返回<code>chrome</code></li>
+<li><code>chrome</code> 获得域名和对应的<code>ip</code>地址后,发起HTTP “<code>三次握手</code>”</li>
+<li><code>chrome</code>和服务器连接完后，游览器就可以向服务器发出请求 <code>get/post</code></li>
+<li>服务器接受到这个请求，根据url参数，经过后端处理，把对应的数据返回给游览器，如请求首页，后端会把整个index.html返回给游览器</li>
+<li>游览器在解析和渲染index.html时，遇到js、css、图片资源等也会发出http请求</li>
+<li>游览器根据拿到的资源渲染，最终把对应的页面展现给用户</li>
+</ol>
+<h3 id="请求-响应"><a href="#请求-响应" class="headerlink" title="请求 响应"></a>请求 响应</h3><ul>
+<li>请求 <code>request</code></li>
+<li>响应 <code>response</code></li>
+<li>请求和响应都会发出<code>http头</code>和<code>正文信息</code></li>
+</ul>
+<h4 id="request"><a href="#request" class="headerlink" title="request"></a><code>request</code></h4><ol>
+<li><code>http头</code> 请求方法(get/post)、类型、时间</li>
+<li><code>正文信息</code> 通常为用户提交的表单数据</li>
+</ol>
+<h4 id="response"><a href="#response" class="headerlink" title="response"></a><code>response</code></h4><ol>
+<li><code>http头</code> <code>http状态码</code>、类型、时间</li>
+<li><code>正文信息</code> 资源如 html js 图片 css</li>
+</ol>
+<h4 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a><code>http状态码</code></h4><ul>
+<li>200-299 用于表示请求成功</li>
+<li>200 成功</li>
+<li>300-399 用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息</li>
+<li>400-499 用于指出客户端的错误</li>
+<li>400 请求出现语法错误</li>
+<li>404 无法找到指定位置的资源。这也是一个常用的应答。</li>
+<li>500-599 用于支持服务器错误</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/29/other/package-json/" rel="next" title="package.json学习笔记">
+                <i class="fa fa-chevron-left"></i> package.json学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/29/other/webpack 学习笔记/" rel="prev" title="webpack 学习笔记">
+                webpack 学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="LiangJiaYu" />
+          <p class="site-author-name" itemprop="name">LiangJiaYu</p>
+           
+              <p class="site-description motion-element" itemprop="description">热爱前端</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liangjiayu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http协议"><span class="nav-number">1.</span> <span class="nav-text">http协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开首页"><span class="nav-number">1.2.</span> <span class="nav-text">打开首页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求-响应"><span class="nav-number">1.3.</span> <span class="nav-text">请求 响应</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#request"><span class="nav-number">1.3.1.</span> <span class="nav-text">request</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#response"><span class="nav-number">1.3.2.</span> <span class="nav-text">response</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http状态码"><span class="nav-number">1.3.3.</span> <span class="nav-text">http状态码</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiangJiaYu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
